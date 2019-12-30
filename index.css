@@ -1,0 +1,29 @@
+body p {
+  font-size: 40px;
+}
+
+ol li::before {
+  content: "I'm interested in ";
+}
+
+.blue {
+  color: blue;
+}
+
+div.col-sm-3 {
+  color: green;
+  font-weight: bold;
+  font-style: italic;
+  background-color: black;
+  text-shadow: 2px 2px #FF0000;
+}
+
+body p {
+  color: red;
+}
+
+p:hover {
+  background-color: gray;
+}
+
+/*# sourceMappingURL=index.css.map */
