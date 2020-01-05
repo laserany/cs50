@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<form method="get">
+    {% if error %}
+    <p class="error" style="color: red; font-size: 15px;">The selected book was not found! please choose another book</p>
+    {% endif %}
+    <input list="books" name="book" required>
+    <datalist id="books">
+        {% for book in books %}
+      <option value="{{ book.id }}">isbn: {{ book.isbn }}, title: {{ book.title }}, author: {{ book.author }}</option>
+        {% endfor %}
+    </datalist>
+    <input type="submit">
+</form>
+<form method="post">
+    <button>log out</button>
+</form>

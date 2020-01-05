@@ -1,0 +1,9 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+</head>
+<div class="login-page">
+  <div class="form">
+      {% block form %}{% endblock %}
+  </div>
+</div>

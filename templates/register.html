@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block form %}
+<form class="login-form" method="post">
+  {% if error %}
+  <p class="error">username already exists please choose another username</p>
+  {% endif %}
+  <input type="text" placeholder="username" name="username" required/>
+  <input type="password" placeholder="password" name="password" required/>
+  <button>register</button>
+</form>
+{% endblock %}
