@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Project Final
+    </title>
+    <style>
+      #create_group {
+        display: none;
+      }
+      #add_member_to_group {
+        display: none;
+      }
+    </style>
+  </head>
+<body>
+<button onclick='groupShower()'>Create a Group</button>
+<form id="create_group" method="post">
+  {% csrf_token %}
+  <label for="group_name">Name of your group:</label>
+  <input type="text" name="group_name" required>
+  <button>Create</button>  
+</form>
+<br><br><br>
+<button onclick='memberAdder()'>Add member to a Group</button>
+<form id="add_member_to_group" method="post">
+  {% csrf_token %}
+  <label for="member_name">Name of your member:</label>
+  <input type="text" name="member_name" required>
+  <label for="member_phone">Phone of your member:</label>
+  <input type="text" name="member_phone" pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' placeholder="123-456-7890" required>
+  <label for="member_email">Email of your member:</label>
+  <input type="email" name="member_email" required>
+  <label for="member_group">group of your member:</label>
+  <input type="text" name="member_group" required>
+  <button>Add</button>  
+</form>
+<br><br><br>
+<form method="post">
+{% csrf_token %}
+<label for="people">People of your reminder:</label>
+<select id="people" name="people" onchange="groupListShower()" required>
+  <option value="yourself">Yourself</option>
+  <option value="group">Group</option>
+</select>
+<label for="description">Description of your reminder:</label>
+<input type="text" name="description" required>
+<label for="method">Method of your reminder:</label>
+<select id="method" name="method" required>
+  <option value="call">Call</option>
+  <option value="text">Text</option>
+  <option value="email">Email</option>
+</select>
+<button>Submit</button>
+</form>
+<p><a href="{% url 'logout' %}">logout</a></p>
+<script>
+  function groupShower() {
+    document.getElementById('create_group').style.display = 'inline'
+  }
+  
+  function memberAdder() {
+    document.getElementById('add_member_to_group').style.display = 'inline'
+  }
+
+  function groupListShower() {
+    selected_people = document.getElementById('people').value
+    if (selected_people == 'group')
+      document.getElementById('people').insertAdjacentHTML('afterend', `
+      <select id="group_list" name="group_list" required>
+        {% for selected_group in group_list %}
+        <option value={{selected_group.name}}>{{selected_group.name}}</option>
+        {% endfor %}
+      </select>`)
+    else
+      document.getElementById('group_list').remove()
+  }
+
+</script>
+</body>
+</html>
